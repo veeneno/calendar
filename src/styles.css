@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+:root {
+  --background-color: #f5f5f5;
+  --primary-color: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+  --secondary-color: #9e9e9e;
+  --text-color: #333;
+  --button-hover: #757575;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  width: 90%;
+  max-width: 1600px;
+  position: relative;
+  top: -30px;
+  left: -30px;
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-container h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-header button {
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.calendar-header button:hover {
+  background: var(--button-hover);
+}
+
+#current-date {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 120px);
+  gap: 5px;
+}
+
+.calendar div {
+  background: var(--primary-color);
+  border: none;
+  text-align: left;
+  padding: 3px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.calendar div .day-number {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  border: none;
+}
+
+.calendar div .notes-preview {
+  font-size: 18px;
+  color: var(--text-color);
+  text-align: center;
+  overflow: hidden;
+  white-space: pre-line;
+  line-height: 1.2;
+  max-height: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  border: none;
+}
+
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  top: 20px;
+}
+
+.notes-container h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+textarea {
+  background: var(--primary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  padding: 10px;
+  resize: none;
+  font-family: inherit;
+  height: 250px;
+  font-size: 18px;
+}
+
+button {
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: var(--button-hover);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: var(--background-color);
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#modal-title {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+#modal-input {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  resize: none;
+}
+
+#modal-save {
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#modal-save:hover {
+  background: var(--button-hover);
+}
+
+.theme-manager {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.theme-row {
+  display: flex;
+  gap: 5px;
+}
+
+.theme-btn {
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.3s ease;
+}
+
+.theme-btn:hover {
+  background: var(--button-hover);
+}
+
+.backup-buttons {
+  position: fixed;
+  bottom: 20px; 
+  left: 20px; 
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.backup-buttons button {
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 14px; 
+}
+
+.backup-buttons button:hover {
+  background: var(--button-hover);
+}
+
+.popup-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-notification.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.light-default {
+  --background-color: #f5f5f5;
+  --primary-color: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+  --secondary-color: #9e9e9e;
+  --text-color: #333;
+  --button-hover: #757575;
+}
+
+.light-nature {
+  --background-color: #e8f5e9;
+  --primary-color: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+  --secondary-color: #81c784;
+  --text-color: #333;
+  --button-hover: #66bb6a;
+}
+
+.light-pastel {
+  --background-color: #fce4ec;
+  --primary-color: linear-gradient(135deg, #f8bbd0, #f48fb1);
+  --secondary-color: #f06292;
+  --text-color: #333;
+  --button-hover: #ec407a;
+}
+
+.light-solar {
+  --background-color: #fffde7;
+  --primary-color: linear-gradient(135deg, #fff9c4, #fff176);
+  --secondary-color: #ffd54f;
+  --text-color: #333;
+  --button-hover: #ffb300;
+}
+
+.light-mystic {
+  --background-color: #ede7f6;
+  --primary-color: linear-gradient(135deg, #d1c4e9, #b39ddb);
+  --secondary-color: #9575cd;
+  --text-color: #333;
+  --button-hover: #7e57c2;
+}
+
+.light-ocean {
+  --background-color: #e3f2fd;
+  --primary-color: linear-gradient(135deg, #bbdefb, #90caf9);
+  --secondary-color: #64b5f6;
+  --text-color: #333;
+  --button-hover: #42a5f5;
+}
+
+.light-vibrant {
+  --background-color: #fbe9e7;
+  --primary-color: linear-gradient(135deg, #ffccbc, #ffab91);
+  --secondary-color: #ff7043;
+  --text-color: #333;
+  --button-hover: #e64a19;
+}
+
+.light-soft {
+  --background-color: #fafafa;
+  --primary-color: linear-gradient(135deg, #eeeeee, #bdbdbd);
+  --secondary-color: #9e9e9e;
+  --text-color: #333;
+  --button-hover: #757575;
+}
+
+.dark-default {
+  --background-color: #202020;
+  --primary-color: rgba(40, 40, 40, 0.3); 
+  --secondary-color: rgba(80, 80, 80, 0.3); 
+  --text-color: #ffffff;
+  --button-hover: rgba(100, 100, 100, 0.7);
+}
+
+.dark-nature {
+  --background-color: #252525; 
+  --primary-color: rgba(30, 100, 40, 0.3); 
+  --secondary-color: rgba(50, 130, 60, 0.3);
+  --text-color: #ffffff;
+  --button-hover: rgba(60, 150, 80, 0.7);
+}
+
+.dark-pastel {
+  --background-color: #2a2a2a; 
+  --primary-color: rgba(150, 30, 90, 0.3); 
+  --secondary-color: rgba(180, 50, 110, 0.3);
+  --text-color: #ffffff;
+  --button-hover: rgba(200, 70, 130, 0.7);
+}
+
+.dark-solar {
+  --background-color: #2c2c2c; 
+  --primary-color: rgba(250, 150, 30, 0.3); 
+  --secondary-color: rgba(255, 180, 50, 0.3);
+  --text-color: #ffffff;
+  --button-hover: rgba(255, 200, 70, 0.7);
+}
+
+.dark-mystic {
+  --background-color: #2e2e2e; 
+  --primary-color: rgba(60, 40, 160, 0.3); 
+  --secondary-color: rgba(80, 60, 180, 0.3);
+  --text-color: #ffffff;
+  --button-hover: rgba(100, 80, 200, 0.7);
+}
+
+.dark-ocean {
+  --background-color: #2f2f2f; 
+  --primary-color: rgba(20, 80, 170, 0.3); 
+  --secondary-color: rgba(40, 100, 190, 0.3);
+  --text-color: #ffffff;
+  --button-hover: rgba(60, 120, 210, 0.7);
+}
+
+.dark-vibrant {
+  --background-color: #303030; 
+  --primary-color: rgba(200, 60, 20, 0.3);
+  --secondary-color: rgba(220, 80, 40, 0.3);
+  --text-color: #ffffff;
+  --button-hover: rgba(240, 100, 60, 0.7);
+}
+
+.dark-soft {
+  --background-color: #333333; 
+  --primary-color: rgba(50, 50, 50, 0.9);
+  --secondary-color: rgba(90, 90, 90, 0.9);
+  --text-color: #ffffff;
+  --button-hover: rgba(110, 110, 110, 0.7);
+}

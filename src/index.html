@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendário</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="calendar-container">
+      <h1>Calendário</h1>
+      <div class="calendar-header">
+        <button id="prev-month">❮</button>
+        <h2 id="current-date"></h2>
+        <button id="next-month">❯</button>
+      </div>
+      <div class="calendar-weekdays">
+        <div>Dom</div>
+        <div>Seg</div>
+        <div>Ter</div>
+        <div>Qua</div>
+        <div>Qui</div>
+        <div>Sex</div>
+        <div>Sáb</div>
+      </div>
+      <div class="calendar"></div>
+    </div>
+    <div class="notes-container">
+      <h1>Anotações Gerais</h1>
+      <textarea id="general-notes" placeholder="Anotações Gerais"></textarea>
+      <button id="save-general">Salvar Alterações</button>
+      <h1>Significados</h1>
+      <textarea id="meanings-notes" placeholder="Significados"></textarea>
+      <button id="save-meanings">Salvar Alterações</button>
+    </div>
+  </div>
+
+  <!-- Modal Personalizado -->
+  <div id="custom-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3 id="modal-title">Editar Anotações</h3>
+      <textarea id="modal-input" placeholder="Digite suas anotações (uma por linha)"></textarea>
+      <button id="modal-save">Salvar</button>
+    </div>
+  </div>
+
+  <!-- Gerenciador de Temas -->
+  <div class="theme-manager">
+    <div class="theme-row light-themes">
+      <button class="theme-btn" data-theme="light-default">Padrão Claro</button>
+      <button class="theme-btn" data-theme="light-nature">Natureza Clara</button>
+      <button class="theme-btn" data-theme="light-pastel">Pastel Clara</button>
+      <button class="theme-btn" data-theme="light-solar">Solar Clara</button>
+      <button class="theme-btn" data-theme="light-mystic">Místico Clara</button>
+      <button class="theme-btn" data-theme="light-ocean">Oceano Clara</button>
+      <button class="theme-btn" data-theme="light-vibrant">Vibrante Clara</button>
+      <button class="theme-btn" data-theme="light-soft">Suave Clara</button>
+    </div>
+    <div class="theme-row dark-themes">
+      <button class="theme-btn" data-theme="dark-default">Padrão Escuro</button>
+      <button class="theme-btn" data-theme="dark-nature">Natureza Escura</button>
+      <button class="theme-btn" data-theme="dark-pastel">Pastel Escura</button>
+      <button class="theme-btn" data-theme="dark-solar">Solar Escura</button>
+      <button class="theme-btn" data-theme="dark-mystic">Místico Escura</button>
+      <button class="theme-btn" data-theme="dark-ocean">Oceano Escura</button>
+      <button class="theme-btn" data-theme="dark-vibrant">Vibrante Escura</button>
+      <button class="theme-btn" data-theme="dark-soft">Suave Escura</button>
+    </div>
+  </div>
+
+  <!-- Botões de Backup -->
+  <div class="backup-buttons">
+    <button id="create-backup">Fazer Backup</button>
+    <button id="load-backup">Carregar Backup</button>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
